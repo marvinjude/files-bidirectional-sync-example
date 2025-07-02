@@ -10,6 +10,7 @@ import { Icons } from "@/components/ui/icons";
 import { toast } from "sonner";
 import { startSync } from "@/lib/integration-api";
 import { cn } from "@/lib/utils";
+import { ACCOUNTING_APPS } from "@/lib/constants";
 
 interface IntegrationListItemProps {
   integration: Integration;
@@ -48,9 +49,10 @@ export function IntegrationListItem({
 
       setIsConnecting(false);
 
-      if (
-        syncAfterConnect
-      ) {
+
+      const shouldSyncAfterConnect = syncAfterConnect && !ACCOUNTING_APPS.includes(integration.key);
+
+      if (shouldSyncAfterConnect) {
         handleStartSync();
       }
 

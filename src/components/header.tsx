@@ -17,6 +17,10 @@ const navigation = [
   {
     title: "Documents",
     href: "/documents",
+  },
+  {
+    title: "Journal Entries",
+    href: "/journal-entries",
   }
 ];
 

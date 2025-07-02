@@ -7,10 +7,6 @@ export default function Integrations() {
         <h1 className="text-3xl font-bold text-gray-900 dark:text-white">
           Integrations
         </h1>
-        <p className="text-gray-500">
-          Import data from various sources and configure specific folders or
-          files to track for updates.
-        </p>
       </div>
       <IntegrationList />
     </div>

@@ -5,6 +5,7 @@ import { DocumentList } from "./components/document-list";
 import { FilterBar } from "./components/filter-bar";
 import { useState, useMemo } from "react";
 import { useIntegrations } from "@integration-app/react";
+import { ACCOUNTING_APPS } from "@/lib/constants";
 
 function LoadingSkeleton() {
   return (
@@ -46,9 +47,12 @@ export default function DocumentsPage() {
   const { integrations, loading: integrationsLoading, error: integrationsError } = useIntegrations();
   const [selectedIntegration, setSelectedIntegration] = useState<string | null>(null);
 
-  // Extract integration keys from the integrations list
+  // Extract integration keys from the integrations list, excluding account apps
   const integrationKeys = useMemo(() => {
-    return integrations.map(integration => integration.key).sort();
+    return integrations
+      .map(integration => integration.key)
+      .filter(key => !ACCOUNTING_APPS.includes(key))
+      .sort();
   }, [integrations]);
 
   // Set default selection when integrations load
